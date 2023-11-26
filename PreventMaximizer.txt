@@ -21,14 +21,7 @@ repeat
 					
 					if isFullScreen then
 						log "⚠️ Full screen detected: " & appName & " is in full screen mode. Attempting to exit."
-						
-						-- Check and switch input method if needed
-						set currentInputSource to do shell script "defaults read ~/Library/Preferences/com.apple.HIToolbox.plist AppleSelectedInputSources | egrep -w 'KeyboardLayout Name' | sed -E 's/.* = \"?([^\";]+)\"?;/\\1/' | head -n 1"
-						if currentInputSource is not equal to "U.S." then
-							tell application "System Events" to key code 49 using {control down}
-							delay 0.5 -- Wait for input method to switch
-						end if
-						
+							
 						-- Set focus to the window
 						set frontmost of theProcess to true
 						delay 0.5 -- Wait a short period to ensure the app responds
